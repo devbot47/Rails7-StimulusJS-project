@@ -6,13 +6,17 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Users</h1>
     <%= link_to 'Personal Data', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium", data: { turbo_frame: 'user_modal' }  %>
+    <%= link_to 'Employment', new_employee_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium", data: { turbo_frame: 'employment_modal' }  %>
+    <%= link_to 'All employments', employees_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium", data: { turbo_frame: 'employment_modal' }  %>
+
   </div>
 
   <br>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Users</h1>
-    <%= link_to 'Employment', new_employee_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium", data: { turbo_frame: 'employment_modal' }  %>
+  </div>
+
+  <div class="flex justify-between items-center">
   </div>
 
   <div id="users" class="min-w-full">
