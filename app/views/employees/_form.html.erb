@@ -1,0 +1,55 @@
+<%= form_with(model: employee, class: "contents") do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employment from being saved:</h2>
+
+      <ul>
+        <% employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :employee %>
+    <%= form.text_field :user_id, value: @user_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :date_started %>
+    <%= form.date_field :date_started, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :date_employment_ended %>
+    <%= form.date_field :date_employment_ended, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit :save, class: "rounded-lg py-3 px-5 bg-stone-400 text-white inline-block font-medium cursor-pointer", :id => 'button_id', disabled: true %>
+  </div>
+<% end %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js" type="text/javascript"></script>
+<script>
+    document.addEventListener('keyup', function(){
+        let employee_user_id;
+        let employee_date_started;
+        let employee_date_employment_ended;
+        employee_user_id = $('#employee_user_id').val() != '';
+        employee_date_started = $('#employee_date_started').val() != '';
+        employee_date_employment_ended = $('#employee_date_employment_ended').val() != '';
+        if(employee_user_id && employee_date_started && employee_date_employment_ended){
+            $('#button_id').removeAttr('disabled');
+            $("#button_id").removeClass("bg-stone-400");
+            $("#button_id").addClass("bg-blue-600");
+        }
+        else{
+            $('#button_id').attr('disabled', 'disabled');
+            $("#button_id").removeClass("bg-blue-600");
+            $("#button_id").addClass("bg-stone-400");
+        }
+    });
+</script>

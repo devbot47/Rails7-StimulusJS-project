@@ -1,0 +1,110 @@
+<%= form_with(model: user, class: "contents") do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :nick %>
+    <%= form.text_field :nick, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", maxlength: 12, :readonly => true %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit :save, class: "rounded-lg py-3 px-5 bg-stone-400 text-white inline-block font-medium cursor-pointer", :id => 'button_id', disabled: true %>
+  </div>
+<% end %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js" type="text/javascript"></script>
+<!--mask script-->
+
+
+<script>
+    // Email validation check
+    function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+    }
+
+    document.querySelector('#user_email').addEventListener('input', function() {
+        let text=this.value
+        let email_validation = validateEmail(text)
+        if(email_validation){
+          $("#user_phone_number").removeAttr('readonly');
+          $("#user_nick").removeAttr('readonly');
+          $("#button_id").removeAttr('readonly');
+        }
+        else{
+            $("#user_phone_number").attr('readonly','readonly');
+            $("#user_nick").attr('readonly','readonly');
+            $("#button_id").attr('readonly','readonly');
+        }
+
+
+    });
+
+
+
+
+    // Phone number auto formatting
+    document.querySelector('#user_phone_number').addEventListener('input', function() {
+        let text=this.value
+        text=text.replace(/\D/g,'')
+        if(text.length>3) text=text.replace(/.{3}/,'$&-')
+        if(text.length>7) text=text.replace(/.{7}/,'$&-')
+        this.value=text;
+    });
+
+    document.addEventListener('keyup', function(){
+        let first_name;
+        let last_name;
+        let email;
+        let nick;
+        let number;
+        first_name = $('#user_first_name').val() != '';
+        last_name = $('#user_last_name').val() != '';
+        email = $('#user_email').val() != '';
+        nick = $('#user_nick').val() != '';
+        number = $('#user_phone_number').val() != '';
+        // console.log(document.getElementById('user_first_name').value);
+
+        if(first_name && last_name && email && nick && number){
+            $('#button_id').removeAttr('disabled');
+            $("#button_id").removeClass("bg-stone-400");
+            $("#button_id").addClass("bg-blue-600");
+        }
+        else{
+            $('#button_id').attr('disabled', 'disabled');
+            $("#button_id").removeClass("bg-blue-600");
+            $("#button_id").addClass("bg-stone-400");
+        }
+    });
+</script>
+
