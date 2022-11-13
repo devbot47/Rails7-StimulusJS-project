@@ -1,24 +1,38 @@
-# README
+# Profile Collector
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
 
-* Ruby version
+## General info
+This project is simply based on collecting information of an employee.
 
-* System dependencies
+## Technologies
+Project is created with:
+* Rails 7
+* Stimulus js
+* Hotwire
+* Tailwind
+* TurboFrames 
+* MySQL 
+* RSpec 
 
-* Configuration
+## Setup
+To run this project, install it locally using npm:
 
-* Database creation
+```
+$ bundle install
+$ db:create
+$ db:migrate
+$ ./bin/dev
+```
 
-* Database initialization
 
-* How to run the test suite
+## RSpec
+To run specs:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ rails spec
+```
