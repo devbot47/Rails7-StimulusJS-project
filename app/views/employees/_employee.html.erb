@@ -1,0 +1,18 @@
+<div id="<%= dom_id employee %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <% @user = User.find(employee.user_id) %>
+    <%= @user.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date Started:</strong>
+    <%= employee.date_started %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date Employment Ended:</strong>
+    <%= employee.date_employment_ended %>
+  </p>
+
+</div>
